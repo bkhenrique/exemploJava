@@ -1,0 +1,50 @@
+# Configuracoes da Aplicacao
+# ONDE FICA: src/main/resources/
+
+spring:
+  application:
+    name: estrutura-java-exemplo
+  
+  # Configuracao do Banco de Dados
+  datasource:
+    url: ${DATABASE_URL:jdbc:h2:mem:testdb}
+    username: ${DATABASE_USER:sa}
+    password: ${DATABASE_PASSWORD:}
+    driver-class-name: org.h2.Driver
+  
+  # JPA / Hibernate
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+  
+  # H2 Console (apenas desenvolvimento)
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+# Configuracao do Servidor
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /
+
+# Logging
+logging:
+  level:
+    root: INFO
+    com.exemplo: DEBUG
+    org.springframework.web: INFO
+    org.hibernate.SQL: DEBUG
+
+# Configuracoes customizadas da aplicacao
+app:
+  nome: "Estrutura Java Exemplo"
+  versao: "1.0.0"
+  jwt:
+    secret: ${JWT_SECRET:minha-chave-secreta-desenvolvimento}
+    expiration: 86400000
